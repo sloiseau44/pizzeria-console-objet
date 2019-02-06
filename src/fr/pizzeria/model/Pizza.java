@@ -1,24 +1,54 @@
 package fr.pizzeria.model;
 
+/**
+ * 
+ * @author Acer
+ * Objet pizza
+ *
+ */
+
 public class Pizza {
+	
+	/**
+	 * @param id (requis) identifiant de la pizza
+	 * @param code (requis) code de la pizza
+	 * @param libelle (requis) libellé de la pizza
+	 * @param prix (requis) prix d'achat de la pizza
+	 * 
+	 */
+	
 	public int id;
 	public String code;
 	String libelle;
 	double prix;
-
+	
+	/**
+	 * Constructeur 
+	 * 
+	 * @param code (requis)
+	 * @param libelle (requis)
+	 * @param prix (requis)
+	 * @param listePizza (requis) carte de la pizza existante
+	 */
+	
 	public Pizza(String code, String libelle, double prix, Pizza[] listePizza) {		
-		int idTemp = Integer.MIN_VALUE;
-		for(int i=0; i<listePizza.length; i++){
-			if(listePizza[i].id>idTemp){
-				idTemp = listePizza[i].id;
-			}
-		}
-		this.id = idTemp+1;
+		this.id = listePizza[listePizza.length-1].id+1;
 		this.code = code;
 		this.libelle = libelle;
 		this.prix = prix;
 	}
+	
 
+	/**
+	 * Constructeur  
+	 * 
+	 * @param id (requis)
+	 * @param code (requis)
+	 * @param libelle (requis)
+	 * @param prix (requis)
+	 * 
+	 */
+	
 	public Pizza(int id, String code, String libelle, double prix) {
 		this.id = id;
 		this.code = code;
@@ -26,43 +56,14 @@ public class Pizza {
 		this.prix = prix;
 	}
 
+	/**
+	 * @return l'affichage du code, du libellé et du prix de la pizza 
+	 * 
+	 */
+	
 	@Override
 	public String toString() {
-		return new String(this.id+" "+this.code+" -> "+this.libelle+" ("+this.prix+" €)");
+		return new String(this.code+" -> "+this.libelle+" ("+this.prix+" €)");
 	}
-
-
-	/*
-	public int getId(){
-		return id;
-	}
-
-	public String getCode(){
-		return code;
-	}
-
-	public String getLibelle(){
-		return libelle;
-	}
-
-	public double getPrix(){
-		return prix;
-	}
-
-	public void setID(int id){
-		this.id = id;
-	}
-
-	public void setCode(String code){
-		this.code = code;
-	}
-
-	public void setLibelle(String libelle){
-		this.libelle = libelle;
-	}
-
-	public void setPrix(double prix){
-		this.prix = prix;
-	}*/
 
 }
