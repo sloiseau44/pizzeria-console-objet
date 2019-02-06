@@ -1,61 +1,68 @@
 package fr.pizzeria.model;
 
 public class Pizza {
-	int id;
-	String code;
+	public int id;
+	public String code;
 	String libelle;
 	double prix;
-	
-	public Pizza(String code, String libelle, double prix) {
-		this.id ++;
+
+	public Pizza(String code, String libelle, double prix, Pizza[] listePizza) {		
+		int idTemp = Integer.MIN_VALUE;
+		for(int i=0; i<listePizza.length; i++){
+			if(listePizza[i].id>idTemp){
+				idTemp = listePizza[i].id;
+			}
+		}
+		this.id = idTemp+1;
 		this.code = code;
 		this.libelle = libelle;
 		this.prix = prix;
 	}
-	
+
 	public Pizza(int id, String code, String libelle, double prix) {
 		this.id = id;
 		this.code = code;
 		this.libelle = libelle;
 		this.prix = prix;
 	}
-	
+
 	@Override
 	public String toString() {
-		return new String(this.code+" -> "+this.libelle+" ("+this.prix+" €)");
+		return new String(this.id+" "+this.code+" -> "+this.libelle+" ("+this.prix+" €)");
 	}
-	
+
+
 	/*
 	public int getId(){
-		return this.id;
+		return id;
 	}
-	
+
 	public String getCode(){
-		return this.code;
+		return code;
 	}
-	
+
 	public String getLibelle(){
-		return this.libelle;
+		return libelle;
 	}
-	
+
 	public double getPrix(){
-		return this.prix;
+		return prix;
 	}
-	
+
 	public void setID(int id){
 		this.id = id;
 	}
-	
+
 	public void setCode(String code){
 		this.code = code;
 	}
-	
+
 	public void setLibelle(String libelle){
 		this.libelle = libelle;
 	}
-	
+
 	public void setPrix(double prix){
 		this.prix = prix;
 	}*/
-	
+
 }
