@@ -1,5 +1,7 @@
 package fr.pizzeria.DAO;
 
+import java.util.List;
+
 import fr.pizzeria.model.Pizza;
 
 /**
@@ -15,7 +17,7 @@ public interface IPizzaDao {
 	 * @return liste existante des pizzas
 	 */
 	
-	Pizza[] listeDesPizzas();
+	List<Pizza> listeDesPizzas();
 	
 	/** 
 	 * Ajoute une pizza dans la liste

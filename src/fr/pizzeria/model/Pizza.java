@@ -1,5 +1,7 @@
 package fr.pizzeria.model;
 
+import java.util.List;
+
 /**
  * 
  * @author Acer
@@ -31,8 +33,8 @@ public class Pizza {
 	 * @param listePizza (requis) carte de la pizza existante
 	 */
 	
-	public Pizza(String code, String libelle, double prix, Pizza[] listePizza) {		
-		this.id = listePizza[listePizza.length-1].id+1;
+	public Pizza(String code, String libelle, double prix, List<Pizza> listePizza) {		
+		this.id = listePizza.get(listePizza.size()-1).id+1;
 		this.code = code;
 		this.libelle = libelle;
 		this.prix = prix;

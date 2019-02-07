@@ -1,5 +1,6 @@
 package fr.pizzeria.service;
 
+import java.util.List;
 import java.util.Scanner;
 
 import fr.pizzeria.DAO.IPizzaDao;
@@ -14,9 +15,9 @@ import fr.pizzeria.model.Pizza;
 public class ModifierPizzaService extends MenuService{
 	public void executerCasUtilisation(IPizzaDao pizzaDao, Scanner scanner) {
 		System.out.println("Mise à jour d’une pizza");
-		Pizza[] listePizza = pizzaDao.listeDesPizzas();
-		for(int i=0; i<listePizza.length; i++){
-			System.out.println(listePizza[i].toString());					
+		List<Pizza> listePizza = pizzaDao.listeDesPizzas();
+		for(Pizza pizza : listePizza){
+			System.out.println(pizza.toString());					
 		}
 		
 		//Demande et lecture du code de la pizza à modifier saisie par l'utilisateur
@@ -35,8 +36,8 @@ public class ModifierPizzaService extends MenuService{
 			double nouveauPrix = scanner.nextDouble();
 			
 			//Modification de la pizza dans la carte
-			for(int i=0; i<listePizza.length; i++){
-				if(listePizza[i].code.equals(code)){
+			for(Pizza pizza : listePizza){
+				if(pizza.code.equals(code)){
 					pizzaDao.modifierPizzaDansListe(code, new Pizza(nouveauCode,nouveauLibelle,nouveauPrix,listePizza));
 				}
 			}

@@ -1,5 +1,8 @@
 package fr.pizzeria.DAO;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import fr.pizzeria.model.Pizza;
 
 /**
@@ -11,7 +14,7 @@ import fr.pizzeria.model.Pizza;
 
 public class PizzaMemDao implements IPizzaDao{
 	//Déclaration de la carte des pizzas
-	Pizza[] listePizza = new Pizza[0];
+	List<Pizza> listePizza = new ArrayList<Pizza>();
 
 	public PizzaMemDao(){
 		initialisationListePizza();
@@ -30,67 +33,52 @@ public class PizzaMemDao implements IPizzaDao{
 	}
 
 
-	public Pizza[] listeDesPizzas() {
+	public List<Pizza> listeDesPizzas() {
 		return this.listePizza;
 	}
 
 
 	public void ajoutPizzaDansListe(Pizza nouvellePizza) {
-		Pizza[] nouvelleListePizza = new Pizza [listePizza.length+1];
-		for (int i=0; i<listePizza.length; i++){
-			nouvelleListePizza[i]=listePizza[i];
-		}
-		nouvelleListePizza[nouvelleListePizza.length-1]=nouvellePizza;
-		this.listePizza = nouvelleListePizza;			
+		this.listePizza.add(nouvellePizza);		
 	}
 
 
 	public void modifierPizzaDansListe(String codePizzaAModifier, Pizza nouvellePizza) {
-		for(int i=0; i<listePizza.length; i++){
-			if(listePizza[i].code.equals(codePizzaAModifier)){
-				listePizza[i]= new Pizza (listePizza[i].id, nouvellePizza.code, nouvellePizza.libelle, nouvellePizza.prix);
+		for(Pizza pizza : listePizza){
+			if(pizza.code.equals(codePizzaAModifier)){
+				pizza =new Pizza (pizza.id, nouvellePizza.code, nouvellePizza.libelle, nouvellePizza.prix);
 			}
-		}	
-
+		}
 	}
 
 
 	public void supprimerPizzaDansListe(String codePizzaASupprimer) {
-		Pizza[] nouvelleListePizza = new Pizza [listePizza.length-1];
-		int iTemp = 0;
-		for (int i=0; i<listePizza.length; i++){
-			if(!listePizza[i].code.equals(codePizzaASupprimer)){
-				nouvelleListePizza[iTemp]=listePizza[i];
-				iTemp++;
-			}			
-		} 
-		this.listePizza = nouvelleListePizza;	
-
+		for(Pizza pizza : listePizza){
+			if(pizza.code.equals(codePizzaASupprimer)){
+				this.listePizza.remove(pizza);
+			}
+		}
 	}
 
 
-	public Pizza trouverPizzaParCode(String codePizzaATrouver) {		
+	public Pizza trouverPizzaParCode(String codePizzaATrouver) {
 		Pizza pizzaATrouver = null;
-		if(pizzaExiste(codePizzaATrouver)){
-			for (int i=0; i<listePizza.length; i++){
-				if(!listePizza[i].code.equals(codePizzaATrouver)){
-					pizzaATrouver = listePizza[i];
-				}			
+		for(Pizza pizza : listePizza){
+			if(pizza.code.equals(codePizzaATrouver)){
+				pizzaATrouver = pizza;
 			}
-		}else{
-			System.out.println("Aucune pizza avec le code "+codePizzaATrouver+" existe.");
-		}
+		}		
 		return pizzaATrouver;
 	}
 
 
-	public boolean pizzaExiste(String codePizzaATrouver) {
+	public boolean pizzaExiste(String codePizzaATrouver) {		
 		boolean pizzaExiste = false;
-		for (int i=0; i<listePizza.length; i++){
-			if(listePizza[i].code.equals(codePizzaATrouver)){
+		for(Pizza pizza : listePizza){
+			if(pizza.code.equals(codePizzaATrouver)){
 				pizzaExiste = true;
-			}			
-		} 		
+			}
+		}	
 		return pizzaExiste;
 	}
 
