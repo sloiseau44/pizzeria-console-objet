@@ -2,13 +2,19 @@ package fr.pizzeria.service;
 
 import java.util.Scanner;
 
-import fr.pizzeria.DAO.PizzaMemDao;
+import fr.pizzeria.DAO.IPizzaDao;
 import fr.pizzeria.model.Pizza;
 
+/**
+ * Service de modification d'une pizza dans la carte
+ * @author Acer
+ *
+ */
+
 public class ModifierPizzaService extends MenuService{
-	public void executerCasUtilisation(PizzaMemDao pizzaMemDao, Scanner scanner) {
+	public void executerCasUtilisation(IPizzaDao pizzaDao, Scanner scanner) {
 		System.out.println("Mise à jour d’une pizza");
-		Pizza[] listePizza = pizzaMemDao.listeDesPizzas();
+		Pizza[] listePizza = pizzaDao.listeDesPizzas();
 		for(int i=0; i<listePizza.length; i++){
 			System.out.println(listePizza[i].toString());					
 		}
@@ -17,7 +23,7 @@ public class ModifierPizzaService extends MenuService{
 		System.out.println("Veuillez choisir le code de la pizza à modifier.");
 		String code = scanner.next();
 		
-		if(pizzaMemDao.pizzaExiste(code)){
+		if(pizzaDao.pizzaExiste(code)){
 			//Demande et lecture du nouveau code saisie par l'utilisateur
 			System.out.println("Veuillez saisir le nouveau code :");
 			String nouveauCode = scanner.next();
@@ -31,7 +37,7 @@ public class ModifierPizzaService extends MenuService{
 			//Modification de la pizza dans la carte
 			for(int i=0; i<listePizza.length; i++){
 				if(listePizza[i].code.equals(code)){
-					pizzaMemDao.modifierPizzaDansListe(code, new Pizza(nouveauCode,nouveauLibelle,nouveauPrix,listePizza));
+					pizzaDao.modifierPizzaDansListe(code, new Pizza(nouveauCode,nouveauLibelle,nouveauPrix,listePizza));
 				}
 			}
 		}else{

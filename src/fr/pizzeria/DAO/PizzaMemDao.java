@@ -13,6 +13,10 @@ public class PizzaMemDao implements IPizzaDao{
 	//Déclaration de la carte des pizzas
 	Pizza[] listePizza = new Pizza[0];
 
+	public PizzaMemDao(){
+		initialisationListePizza();
+	}
+	
 	public void initialisationListePizza() {
 		//Création d'une carte de pizza de base
 		ajoutPizzaDansListe(new Pizza(0, "PEP", "Pépéroni", 12.50));

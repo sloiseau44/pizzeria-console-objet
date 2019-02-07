@@ -2,8 +2,19 @@ package fr.pizzeria.service;
 
 import java.util.Scanner;
 
-import fr.pizzeria.DAO.PizzaMemDao;
+import fr.pizzeria.DAO.IPizzaDao;
+
+/**
+ * Class abstraite des services
+ * @author Acer
+ *  *
+ */
 
 public abstract class MenuService {
-	public abstract void executerCasUtilisation(PizzaMemDao pizzaMemDao, Scanner scanner);
+	/**
+	 * 
+	 * @param pizzaDao (requis)
+	 * @param scanner (requis)
+	 */
+	public abstract void executerCasUtilisation(IPizzaDao pizzaDao, Scanner scanner);
 }
