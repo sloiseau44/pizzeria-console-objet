@@ -40,7 +40,7 @@ public interface IPizzaDao {
 	void supprimerPizzaDansListe(String codePizza);
 	
 	/**
-	 * Trouve une pizza dans la liste 
+	 * Trouve les informations d'une pizza dans la liste en fonction de son code
 	 * @param codePizza (requis)
 	 * @return la pizza demandé grâce à son code
 	 */

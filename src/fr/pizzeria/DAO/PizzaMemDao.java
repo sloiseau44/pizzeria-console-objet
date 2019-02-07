@@ -37,7 +37,7 @@ public class PizzaMemDao implements IPizzaDao{
 			nouvelleListePizza[i]=listePizza[i];
 		}
 		nouvelleListePizza[nouvelleListePizza.length-1]=nouvellePizza;
-		this.listePizza = nouvelleListePizza;		
+		this.listePizza = nouvelleListePizza;			
 	}
 
 
@@ -46,7 +46,8 @@ public class PizzaMemDao implements IPizzaDao{
 			if(listePizza[i].code.equals(codePizzaAModifier)){
 				listePizza[i]= new Pizza (listePizza[i].id, nouvellePizza.code, nouvellePizza.libelle, nouvellePizza.prix);
 			}
-		}		
+		}	
+
 	}
 
 
@@ -59,17 +60,22 @@ public class PizzaMemDao implements IPizzaDao{
 				iTemp++;
 			}			
 		} 
-		this.listePizza = nouvelleListePizza;		
+		this.listePizza = nouvelleListePizza;	
+
 	}
 
 
-	public Pizza trouverPizzaParCode(String codePizzaATrouver) {
+	public Pizza trouverPizzaParCode(String codePizzaATrouver) {		
 		Pizza pizzaATrouver = null;
-		for (int i=0; i<listePizza.length; i++){
-			if(!listePizza[i].code.equals(codePizzaATrouver)){
-				pizzaATrouver = listePizza[i];
-			}			
-		} 
+		if(pizzaExiste(codePizzaATrouver)){
+			for (int i=0; i<listePizza.length; i++){
+				if(!listePizza[i].code.equals(codePizzaATrouver)){
+					pizzaATrouver = listePizza[i];
+				}			
+			}
+		}else{
+			System.out.println("Aucune pizza avec le code "+codePizzaATrouver+" existe.");
+		}
 		return pizzaATrouver;
 	}
 
@@ -77,7 +83,7 @@ public class PizzaMemDao implements IPizzaDao{
 	public boolean pizzaExiste(String codePizzaATrouver) {
 		boolean pizzaExiste = false;
 		for (int i=0; i<listePizza.length; i++){
-			if(!listePizza[i].code.equals(codePizzaATrouver)){
+			if(listePizza[i].code.equals(codePizzaATrouver)){
 				pizzaExiste = true;
 			}			
 		} 		
