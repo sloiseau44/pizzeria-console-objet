@@ -2,6 +2,7 @@ package fr.pizzeria.console;
 
 import java.util.Scanner;
 
+import fr.pizzeria.DAO.PizzaMemDao;
 import fr.pizzeria.model.Pizza;
 
 /**
@@ -17,21 +18,13 @@ public class PizzeriaAdminConsoleApp {
 		//Déclaration du paramètre de fermeture de l'application
 		boolean continuer = true;
 		
-		//Déclaration de la carte des pizzas
-		Pizza[] listePizza = new Pizza[0];
+		//Initialisation de la DAO
+		PizzaMemDao pizzaMemDao = new PizzaMemDao();
+		pizzaMemDao.initialisationListePizza(); 
+
 		
 		//Déclaration de l'objet scanner 
 		Scanner scanner = new Scanner(System.in);
-
-		//Création d'une carte de pizza de base
-		listePizza = ajoutPizzaDansListe(listePizza, new Pizza(0, "PEP", "Pépéroni", 12.50));
-		listePizza = ajoutPizzaDansListe(listePizza, new Pizza(1, "MAR", "Margherita", 14.00));
-		listePizza = ajoutPizzaDansListe(listePizza, new Pizza(2, "REIN", "La Reine", 11.50));
-		listePizza = ajoutPizzaDansListe(listePizza, new Pizza(3, "FRO", "La 4 fromages", 12.00));
-		listePizza = ajoutPizzaDansListe(listePizza, new Pizza(4, "CAN", "La cannibale", 12.50));
-		listePizza = ajoutPizzaDansListe(listePizza, new Pizza(5, "SAV", "La savoyarde", 13.00));
-		listePizza = ajoutPizzaDansListe(listePizza, new Pizza(6, "ORI", "L'orientale", 13.50));
-		listePizza = ajoutPizzaDansListe(listePizza, new Pizza(7, "IND", "L'indienne", 14.00));
 
 		//Démarage du menu
 		do{
@@ -52,6 +45,7 @@ public class PizzeriaAdminConsoleApp {
 			if(saisie==1){
 				System.out.println("Liste des pizzas");
 				//Affichage de la liste
+				Pizza[] listePizza = pizzaMemDao.listeDesPizzas();
 				for(int i=0; i<listePizza.length; i++){
 					System.out.println(listePizza[i].toString());					
 				}
@@ -67,16 +61,19 @@ public class PizzeriaAdminConsoleApp {
 				String libelle = scanner.next();
 				//Demande et lecture du prix saisie par l'utilisateur
 				System.out.println("Veuillez saisir le prix :");
-				double prix = scanner.nextDouble();
+				double prix = scanner.nextDouble();		
+				
 				//Ajout de la pizza dans la liste grâce à la méthode ajoutPizzaDansListe 
-				listePizza = ajoutPizzaDansListe(listePizza, new Pizza(code, libelle, prix, listePizza));
+				pizzaMemDao.ajoutPizzaDansListe(new Pizza(code, libelle, prix, pizzaMemDao.listeDesPizzas()));
 
 			//Modification d'une pizza
 			}else if(saisie==3){
 				System.out.println("Mise à jour d’une pizza");
+				Pizza[] listePizza = pizzaMemDao.listeDesPizzas();
 				for(int i=0; i<listePizza.length; i++){
 					System.out.println(listePizza[i].toString());					
 				}
+				
 				//Demande et lecture du code de la pizza à modifier saisie par l'utilisateur
 				System.out.println("Veuillez choisir le code de la pizza à modifier.");
 				String code = scanner.next();
@@ -93,7 +90,7 @@ public class PizzeriaAdminConsoleApp {
 				//Modification de la pizza dans la carte
 				for(int i=0; i<listePizza.length; i++){
 					if(listePizza[i].code.equals(code)){
-						listePizza[i]= new Pizza (listePizza[i].id, nouveauCode, nouveauLibelle, nouveauPrix);
+						pizzaMemDao.modifierPizzaDansListe(code, new Pizza(nouveauCode,nouveauLibelle,nouveauPrix,listePizza));
 					}
 				}
 
@@ -106,13 +103,7 @@ public class PizzeriaAdminConsoleApp {
 				System.out.println("Veuillez choisir le code de la pizza à supprimer");
 				String code = scanner.next();
 				
-				//Suppressione de la pizza
-				for(int i=0; i<listePizza.length; i++){
-					if(listePizza[i].code.equals(code)){
-						listePizza = supprimerPizzaDansListe(listePizza, code);
-					}
-
-				}
+				pizzaMemDao.supprimerPizzaDansListe(code);
 
 			//Fermeture du programme
 			}else if(saisie==99){
@@ -121,43 +112,6 @@ public class PizzeriaAdminConsoleApp {
 			}
 		}while(continuer);
 		scanner.close();
-	}
-
-	/**
-	 * 
-	 * @param listePizza (requis)
-	 * @param nouvellePizza (requis)
-	 * @return la liste des pizza modifiée
-	 * 
-	 */
-	
-	static Pizza[] ajoutPizzaDansListe (Pizza[] listePizza, Pizza nouvellePizza){
-		Pizza[] nouvelleListePizza = new Pizza [listePizza.length+1];
-		for (int i=0; i<listePizza.length; i++){
-			nouvelleListePizza[i]=listePizza[i];
-		}
-		nouvelleListePizza[nouvelleListePizza.length-1]=nouvellePizza;
-		return nouvelleListePizza;
-	}
-
-	/**
-	 * 
-	 * @param listePizza (requis)
-	 * @param codePizzaASupprimer (requis)
-	 * @return la liste des pizza modifiée
-	 * 
-	 */
-	
-	static Pizza[] supprimerPizzaDansListe (Pizza[] listePizza, String codePizzaASupprimer){
-		Pizza[] nouvelleListePizza = new Pizza [listePizza.length-1];
-		int iTemp = 0;
-		for (int i=0; i<listePizza.length; i++){
-			if(!listePizza[i].code.equals(codePizzaASupprimer)){
-				nouvelleListePizza[iTemp]=listePizza[i];
-				iTemp++;
-			}			
-		} 
-		return nouvelleListePizza;
 	}
 
 

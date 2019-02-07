@@ -19,8 +19,8 @@ public class Pizza {
 	
 	public int id;
 	public String code;
-	String libelle;
-	double prix;
+	public String libelle;
+	public double prix;
 	
 	/**
 	 * Constructeur 
@@ -63,7 +63,7 @@ public class Pizza {
 	
 	@Override
 	public String toString() {
-		return new String(this.code+" -> "+this.libelle+" ("+this.prix+" €)");
+		return new String(this.id+" "+this.code+" -> "+this.libelle+" ("+this.prix+" €)");
 	}
 
 }
