@@ -1,7 +1,7 @@
 package fr.pizzeria.service;
 
 /**
- * Factory de l'application de gestion de la carte des pizzas
+ * Factory des services l'application de gestion de la carte des pizzas
  * @author Acer
  *
  */

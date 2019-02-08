@@ -3,7 +3,8 @@ package fr.pizzeria.console;
 import java.util.Scanner;
 
 import fr.pizzeria.DAO.IPizzaDao;
-import fr.pizzeria.DAO.PizzaMemDao;
+import fr.pizzeria.DAO.PizzaDaoFactory;
+import fr.pizzeria.exception.StockageException;
 import fr.pizzeria.service.*;
 
 /**
@@ -15,14 +16,16 @@ import fr.pizzeria.service.*;
 
 public class PizzeriaAdminConsoleApp {
 	public static void main (String[] args){
-	
+
 		//Déclaration du paramètre de fermeture de l'application
 		boolean continuer = true;
-		
+
 		//Initialisation de la DAO
-		IPizzaDao pizzaDao = new PizzaMemDao();
 		
-		
+		IPizzaDao pizzaDao = PizzaDaoFactory.getDao(1);
+
+
+
 		//Déclaration de l'objet scanner 
 		Scanner scanner = new Scanner(System.in);
 
@@ -35,15 +38,19 @@ public class PizzeriaAdminConsoleApp {
 					+ "\n3. Mettre à jour une pizza"
 					+ "\n4. Supprimer une pizza"
 					+ "\n99. Sortir");
-			
+
 			//Lecture du choix de l'urilisateur grâce au scanner
 			int saisie = scanner.nextInt();
-			
+
 			//Création du menu de service 
 			MenuService menuService = MenuServiceFactory.getService(saisie);
-			
+
 			if(menuService != null){
-				menuService.executerCasUtilisation(pizzaDao, scanner);
+				try{
+					menuService.executerCasUtilisation(pizzaDao, scanner);
+				}catch(StockageException stockageException){
+					stockageException.printStackTrace();
+				}
 			}else{
 				continuer = false;
 			}

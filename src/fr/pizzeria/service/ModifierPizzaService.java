@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import fr.pizzeria.DAO.IPizzaDao;
+import fr.pizzeria.exception.ModificationPizzaException;
 import fr.pizzeria.model.Pizza;
 
 /**
@@ -13,7 +14,7 @@ import fr.pizzeria.model.Pizza;
  */
 
 public class ModifierPizzaService extends MenuService{
-	public void executerCasUtilisation(IPizzaDao pizzaDao, Scanner scanner) {
+	public void executerCasUtilisation(IPizzaDao pizzaDao, Scanner scanner) throws ModificationPizzaException {
 		System.out.println("Mise à jour d’une pizza");
 		List<Pizza> listePizza = pizzaDao.listeDesPizzas();
 		for(Pizza pizza : listePizza){
@@ -43,7 +44,7 @@ public class ModifierPizzaService extends MenuService{
 				}
 			}
 		}else{
-			System.out.println("Aucune pizza avec le code "+code+" existe.");
+			throw new ModificationPizzaException();
 		}
 	}
 }

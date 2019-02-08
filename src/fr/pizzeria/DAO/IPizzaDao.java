@@ -2,6 +2,9 @@ package fr.pizzeria.DAO;
 
 import java.util.List;
 
+import fr.pizzeria.exception.AjoutPizzaException;
+import fr.pizzeria.exception.ModificationPizzaException;
+import fr.pizzeria.exception.SuppressionPizzaException;
 import fr.pizzeria.model.Pizza;
 
 /**
@@ -11,7 +14,7 @@ import fr.pizzeria.model.Pizza;
  *
  */
 
-public interface IPizzaDao {
+public interface IPizzaDao  {
 	
 	/**
 	 * @return liste existante des pizzas
@@ -24,7 +27,7 @@ public interface IPizzaDao {
 	 * @param pizza (requis)
 	 */
 	
-	void ajoutPizzaDansListe(Pizza pizza);
+	void ajoutPizzaDansListe(Pizza pizza) throws AjoutPizzaException;
 	
 	/**
 	 * Modifie une pizza de la liste
@@ -32,14 +35,14 @@ public interface IPizzaDao {
 	 * @param pizza (requis)
 	 */
 	
-	void modifierPizzaDansListe(String codePizza, Pizza pizza);
+	void modifierPizzaDansListe(String codePizza, Pizza pizza) throws ModificationPizzaException;
 	
 	/**
 	 * Supprime une pizza de la liste
 	 * @param codePizza (requis)
 	 */
 	
-	void supprimerPizzaDansListe(String codePizza);
+	void supprimerPizzaDansListe(String codePizza) throws SuppressionPizzaException;
 	
 	/**
 	 * Trouve les informations d'une pizza dans la liste en fonction de son code
