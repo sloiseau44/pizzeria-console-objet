@@ -16,6 +16,7 @@ public abstract class MenuService {
 	 * 
 	 * @param pizzaDao (requis)
 	 * @param scanner (requis)
+	 * @throws StockageException
 	 */
 	public abstract void executerCasUtilisation(IPizzaDao pizzaDao, Scanner scanner) throws StockageException;
 }

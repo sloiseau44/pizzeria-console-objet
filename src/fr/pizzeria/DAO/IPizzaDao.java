@@ -25,6 +25,7 @@ public interface IPizzaDao  {
 	/** 
 	 * Ajoute une pizza dans la liste
 	 * @param pizza (requis)
+	 * @throws AjoutPizzaException dans le cas où une pizza avec un code identique existe
 	 */
 	
 	void ajoutPizzaDansListe(Pizza pizza) throws AjoutPizzaException;
@@ -33,6 +34,7 @@ public interface IPizzaDao  {
 	 * Modifie une pizza de la liste
 	 * @param codePizza (requis)
 	 * @param pizza (requis)
+	 * @throws ModificationPizzaException dans le cas où aucune pizza avec ce code n'existe
 	 */
 	
 	void modifierPizzaDansListe(String codePizza, Pizza pizza) throws ModificationPizzaException;
@@ -40,6 +42,7 @@ public interface IPizzaDao  {
 	/**
 	 * Supprime une pizza de la liste
 	 * @param codePizza (requis)
+	 * @throws ModificationPizzaException dans le cas où aucune pizza avec ce code n'existe
 	 */
 	
 	void supprimerPizzaDansListe(String codePizza) throws SuppressionPizzaException;
