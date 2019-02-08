@@ -39,6 +39,7 @@ public class PizzeriaAdminConsoleApp {
 			//Lecture du choix de l'urilisateur grâce au scanner
 			int saisie = scanner.nextInt();
 			
+			//Création du menu de service 
 			MenuService menuService = MenuServiceFactory.getService(saisie);
 			
 			if(menuService != null){

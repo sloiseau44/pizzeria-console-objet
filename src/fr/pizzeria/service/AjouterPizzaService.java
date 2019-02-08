@@ -1,5 +1,6 @@
 package fr.pizzeria.service;
 
+import java.util.List;
 import java.util.Scanner;
 
 import fr.pizzeria.DAO.IPizzaDao;
@@ -28,7 +29,9 @@ public class AjouterPizzaService extends MenuService {
 			double prix = scanner.nextDouble();		
 			
 			//Ajout de la pizza dans la liste grâce à la méthode ajoutPizzaDansListe 
-			pizzaDao.ajoutPizzaDansListe(new Pizza(code, libelle, prix, pizzaDao.listeDesPizzas()));
+			List<Pizza> listePizza = pizzaDao.listeDesPizzas();
+			int idPizza = listePizza.size();
+			pizzaDao.ajoutPizzaDansListe(new Pizza(idPizza, code, libelle, prix));
 		}else{
 			System.out.println("Une pizza avec le code "+code+" existe déjà.");
 		}
