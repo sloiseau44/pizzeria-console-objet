@@ -19,7 +19,7 @@ public class PizzaMemDao implements IPizzaDao{
 	public PizzaMemDao(){
 		initialisationListePizza();
 	}
-	
+
 	public void initialisationListePizza() {
 		//Création d'une carte de pizza de base
 		ajoutPizzaDansListe(new Pizza(0, "PEP", "Pépéroni", 12.50));
@@ -46,18 +46,20 @@ public class PizzaMemDao implements IPizzaDao{
 	public void modifierPizzaDansListe(String codePizzaAModifier, Pizza nouvellePizza) {
 		for(Pizza pizza : listePizza){
 			if(pizza.code.equals(codePizzaAModifier)){
-				pizza =new Pizza (pizza.id, nouvellePizza.code, nouvellePizza.libelle, nouvellePizza.prix);
+				listePizza.set(listePizza.indexOf(pizza),nouvellePizza);
 			}
 		}
 	}
 
 
 	public void supprimerPizzaDansListe(String codePizzaASupprimer) {
+		Pizza pizzaASupprimer = null;
 		for(Pizza pizza : listePizza){
 			if(pizza.code.equals(codePizzaASupprimer)){
-				this.listePizza.remove(pizza);
+				pizzaASupprimer = pizza;
 			}
 		}
+		listePizza.remove(pizzaASupprimer);
 	}
 
 

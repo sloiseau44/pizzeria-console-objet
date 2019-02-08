@@ -39,6 +39,7 @@ public class ModifierPizzaService extends MenuService{
 			for(Pizza pizza : listePizza){
 				if(pizza.code.equals(code)){
 					pizzaDao.modifierPizzaDansListe(code, new Pizza(pizza.id, nouveauCode,nouveauLibelle,nouveauPrix));
+					
 				}
 			}
 		}else{

@@ -16,7 +16,7 @@ public class Pizza {
 	 * @param prix (requis) prix d'achat de la pizza
 	 * 
 	 */
-	
+	public static int nbPizza;
 	public int id;
 	public String code;
 	public String libelle;
@@ -30,7 +30,8 @@ public class Pizza {
 	 * @param prix (requis)
 	 */
 	
-	public Pizza(String code, String libelle, double prix) {		
+	public Pizza(String code, String libelle, double prix) {
+		id = nbPizza++;
 		this.code = code;
 		this.libelle = libelle;
 		this.prix = prix;
@@ -48,6 +49,7 @@ public class Pizza {
 	 */
 	
 	public Pizza(int id, String code, String libelle, double prix) {
+		nbPizza = nbPizza+1;
 		this.id = id;
 		this.code = code;
 		this.libelle = libelle;
