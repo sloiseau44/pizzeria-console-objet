@@ -2,10 +2,9 @@ package fr.pizzeria.console;
 
 import java.util.Scanner;
 
-import fr.pizzeria.DAO.IPizzaDao;
-import fr.pizzeria.DAO.PizzaDaoFactory;
 import fr.pizzeria.exception.StockageException;
-import fr.pizzeria.service.*;
+import fr.pizzeria.service.MenuService;
+import fr.pizzeria.service.MenuServiceFactory;
 
 /**
  * 
@@ -20,12 +19,6 @@ public class PizzeriaAdminConsoleApp {
 		//Déclaration du paramètre de fermeture de l'application
 		boolean continuer = true;
 
-		//Initialisation de la DAO
-		
-		IPizzaDao pizzaDao = PizzaDaoFactory.getDao(1);
-
-
-
 		//Déclaration de l'objet scanner 
 		Scanner scanner = new Scanner(System.in);
 
@@ -37,6 +30,7 @@ public class PizzeriaAdminConsoleApp {
 					+ "\n2. Ajouter une nouvelle pizza"
 					+ "\n3. Mettre à jour une pizza"
 					+ "\n4. Supprimer une pizza"
+					+ "\n5. Choix de la DAO"
 					+ "\n99. Sortir");
 
 			//Lecture du choix de l'urilisateur grâce au scanner
@@ -47,7 +41,7 @@ public class PizzeriaAdminConsoleApp {
 
 			if(menuService != null){
 				try{
-					menuService.executerCasUtilisation(pizzaDao, scanner);
+					menuService.executerCasUtilisation( scanner);
 				}catch(StockageException stockageException){
 					System.out.println(stockageException.getMessage());
 				}catch(IllegalArgumentException illegalArgumentException){

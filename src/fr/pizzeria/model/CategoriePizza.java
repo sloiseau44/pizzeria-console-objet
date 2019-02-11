@@ -46,6 +46,7 @@ public enum CategoriePizza {
 		for(CategoriePizza categorie : values()){
 			if(numCategorie==numCategorieChoisie){
 				categorieChoisie = categorie;
+				break;
 			}
 			numCategorie++;
 		}

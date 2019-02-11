@@ -12,11 +12,13 @@ import fr.pizzeria.exception.StockageException;
  */
 
 public abstract class MenuService {
+	static IPizzaDao iPizzaDao = null;
+	
 	/**
 	 * 
 	 * @param pizzaDao (requis)
 	 * @param scanner (requis)
 	 * @throws StockageException
 	 */
-	public abstract void executerCasUtilisation(IPizzaDao pizzaDao, Scanner scanner) throws StockageException;
+	public abstract void executerCasUtilisation(/*IPizzaDao pizzaDao,*/ Scanner scanner) throws StockageException;
 }

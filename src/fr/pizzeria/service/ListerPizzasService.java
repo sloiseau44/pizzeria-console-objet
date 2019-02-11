@@ -3,7 +3,8 @@ package fr.pizzeria.service;
 import java.util.List;
 import java.util.Scanner;
 
-import fr.pizzeria.DAO.IPizzaDao;
+import fr.pizzeria.exception.ChoixDaoException;
+import fr.pizzeria.exception.StockageException;
 import fr.pizzeria.model.Pizza;
 
 /**
@@ -15,13 +16,17 @@ import fr.pizzeria.model.Pizza;
 public class ListerPizzasService extends MenuService {
 
 
-	public void executerCasUtilisation(IPizzaDao pizzaDao, Scanner scanner) {
+	public void executerCasUtilisation(Scanner scanner) throws StockageException{
 		System.out.println("Liste des pizzas");
 		//Affichage de la liste
-		List<Pizza> listePizza = pizzaDao.listeDesPizzas();
-		for(Pizza pizza : listePizza){
-			System.out.println(pizza.toString());
-		}		
+		if(iPizzaDao==null){
+			throw new ChoixDaoException();
+		}else{
+			List<Pizza> listePizza = iPizzaDao.listeDesPizzas();
+			for(Pizza pizza : listePizza){
+				System.out.println(pizza.toString());
+			}	
+		}
 	}
 
 }

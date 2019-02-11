@@ -25,6 +25,10 @@ public class MenuServiceFactory {
 		}else if(choixUtilisateur==4){
 			menuService = new SupprimerPizzaService();
 
+		
+		}else if(choixUtilisateur==5){
+			menuService = new ChoixDaoService();
+			
 			//Fermeture du programme
 		}else if(choixUtilisateur==99){
 			System.out.println("Aurevoir :(");
