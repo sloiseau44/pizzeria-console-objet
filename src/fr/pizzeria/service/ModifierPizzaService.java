@@ -21,11 +21,11 @@ public class ModifierPizzaService extends MenuService{
 		for(Pizza pizza : listePizza){
 			System.out.println(pizza.toString());					
 		}
-		
+
 		//Demande et lecture du code de la pizza à modifier saisie par l'utilisateur
 		System.out.println("Veuillez choisir le code de la pizza à modifier.");
 		String code = scanner.next();
-		
+
 		if(pizzaDao.pizzaExiste(code)){
 			//Demande et lecture du nouveau code saisie par l'utilisateur
 			System.out.println("Veuillez saisir le nouveau code :");
@@ -36,19 +36,18 @@ public class ModifierPizzaService extends MenuService{
 			//Demande et lecture du nouveau code prix par l'utilisateur
 			System.out.println("Veuillez saisir le nouveau prix :");
 			double nouveauPrix = scanner.nextDouble();
-			//Demande et lecture de la nouvelle catégorie saisie par l'utilisateur
-			System.out.println("Veuillez saisir la catégorie parmis les suivantes :");
-			List<String> listeCategories = CategoriePizza.listerCategorie();
-			for(String categorie : listeCategories){
-				System.out.print(" "+categorie+" ");
-			}
-			String categorieChoisie = scanner.next();	
-			
-			//Modification de la pizza dans la carte
-			for(Pizza pizza : listePizza){
-				if(pizza.code.equals(code)){
-					pizzaDao.modifierPizzaDansListe(code, new Pizza(pizza.id, nouveauCode,nouveauLibelle,nouveauPrix,CategoriePizza.valueOf(categorieChoisie.toUpperCase())));
-					
+			//Demande et lecture de la catégorie saisie par l'utilisateur			
+			CategoriePizza categorieChoisie = CategoriePizza.choixCategoriePizza(scanner);
+
+			if(categorieChoisie==null){
+				throw new IllegalArgumentException();
+			}else{
+				//Modification de la pizza dans la carte
+				for(Pizza pizza : listePizza){
+					if(pizza.code.equals(code)){
+						pizzaDao.modifierPizzaDansListe(code, new Pizza(pizza.id, nouveauCode,nouveauLibelle,nouveauPrix,categorieChoisie));
+
+					}
 				}
 			}
 		}else{

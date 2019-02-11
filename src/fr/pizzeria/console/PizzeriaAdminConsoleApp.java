@@ -51,7 +51,7 @@ public class PizzeriaAdminConsoleApp {
 				}catch(StockageException stockageException){
 					System.out.println(stockageException.getMessage());
 				}catch(IllegalArgumentException illegalArgumentException){
-					System.out.println("\n La catégorie saisie n'existe pas.");
+					System.out.println("\nLa catégorie saisie n'existe pas.");
 				}
 			}else{
 				continuer = false;

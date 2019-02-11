@@ -66,7 +66,7 @@ public class Pizza {
 	
 	@Override
 	public String toString() {
-		return new String(this.id+" "+this.code+" -> "+this.libelle+" "+categorie+" ("+this.prix+" €)");
+		return new String(this.id+" "+this.code+" -> "+this.libelle+" "+categorie.getNom()+" ("+this.prix+" €)");
 	}
 
 	

@@ -32,19 +32,17 @@ public class AjouterPizzaService extends MenuService {
 			System.out.println("Veuillez saisir le prix :");
 			double prix = scanner.nextDouble();		
 			
-			//Demande et lecture de la catégorie saisie par l'utilisateur
-			System.out.println("Veuillez saisir la catégorie parmis les suivantes :");
-			List<String> listeCategories = CategoriePizza.listerCategorie();
-			for(String categorie : listeCategories){
-				System.out.print(" "+categorie+" ");
-			}
-			String categorieChoisie = scanner.next();			
+			//Demande et lecture de la catégorie saisie par l'utilisateur			
+			CategoriePizza categorieChoisie = CategoriePizza.choixCategoriePizza(scanner);
 			
-
-			//Ajout de la pizza dans la liste grâce à la méthode ajoutPizzaDansListe 
-			List<Pizza> listePizza = pizzaDao.listeDesPizzas();
-			int idPizza = listePizza.size();
-			pizzaDao.ajoutPizzaDansListe(new Pizza(idPizza, code, libelle, prix, CategoriePizza.valueOf(categorieChoisie.toUpperCase())));
+			if(categorieChoisie==null){
+				throw new IllegalArgumentException();
+			}else{
+				//Ajout de la pizza dans la liste grâce à la méthode ajoutPizzaDansListe 
+				List<Pizza> listePizza = pizzaDao.listeDesPizzas();
+				int idPizza = listePizza.size();
+				pizzaDao.ajoutPizzaDansListe(new Pizza(idPizza, code, libelle, prix, categorieChoisie));
+			}
 		
 		}
 		

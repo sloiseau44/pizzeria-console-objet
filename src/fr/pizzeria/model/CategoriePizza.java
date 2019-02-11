@@ -2,6 +2,7 @@ package fr.pizzeria.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Enum des catégories de pizza existantes
@@ -35,5 +36,35 @@ public enum CategoriePizza {
 	
 	public String getNom(){
 		return nom;
+	}
+	
+	/**
+	 * 
+	 * @param scanner
+	 * @return la catégorie choisie par l'utilisateur
+	 */
+	
+	public static CategoriePizza choixCategoriePizza (Scanner scanner){
+		CategoriePizza categorieChoisie=null;
+		int numCategorie = 1;
+		System.out.println("Veuillez saisir la catégorie parmis les suivantes :");
+		List<String> listeCategories = CategoriePizza.listerCategorie();
+		
+		for(String categorie : listeCategories){
+			System.out.println(numCategorie+". "+categorie);
+			numCategorie++;
+		}
+				
+		int numCategorieChoisie = scanner.nextInt();
+		
+		numCategorie = 1;
+		for(CategoriePizza categorie : values()){
+			if(numCategorie==numCategorieChoisie){
+				categorieChoisie = categorie;
+			}
+			numCategorie++;
+		}
+		
+		return categorieChoisie;
 	}
 }
