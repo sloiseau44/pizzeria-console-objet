@@ -49,7 +49,9 @@ public class PizzeriaAdminConsoleApp {
 				try{
 					menuService.executerCasUtilisation(pizzaDao, scanner);
 				}catch(StockageException stockageException){
-					stockageException.printStackTrace();
+					System.out.println(stockageException.getMessage());
+				}catch(IllegalArgumentException illegalArgumentException){
+					System.out.println("\n La catégorie saisie n'existe pas.");
 				}
 			}else{
 				continuer = false;

@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import fr.pizzeria.DAO.IPizzaDao;
 import fr.pizzeria.exception.AjoutPizzaException;
+import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
 /**
@@ -19,7 +20,7 @@ public class AjouterPizzaService extends MenuService {
 		System.out.println("Ajout d’une nouvelle pizza");
 		//Demande et lecture du code saisie par l'utilisateur
 		System.out.println("Veuillez saisir le code :");
-		String code = scanner.next();				
+		String code = scanner.next();	
 
 		if(pizzaDao.pizzaExiste(code)){
 			throw new AjoutPizzaException();
@@ -30,11 +31,21 @@ public class AjouterPizzaService extends MenuService {
 			//Demande et lecture du prix saisie par l'utilisateur
 			System.out.println("Veuillez saisir le prix :");
 			double prix = scanner.nextDouble();		
+			
+			//Demande et lecture de la catégorie saisie par l'utilisateur
+			System.out.println("Veuillez saisir la catégorie parmis les suivantes :");
+			List<String> listeCategories = CategoriePizza.listerCategorie();
+			for(String categorie : listeCategories){
+				System.out.print(" "+categorie+" ");
+			}
+			String categorieChoisie = scanner.next();			
+			
 
 			//Ajout de la pizza dans la liste grâce à la méthode ajoutPizzaDansListe 
 			List<Pizza> listePizza = pizzaDao.listeDesPizzas();
 			int idPizza = listePizza.size();
-			pizzaDao.ajoutPizzaDansListe(new Pizza(idPizza, code, libelle, prix));
+			pizzaDao.ajoutPizzaDansListe(new Pizza(idPizza, code, libelle, prix, CategoriePizza.valueOf(categorieChoisie.toUpperCase())));
+		
 		}
 		
 	}

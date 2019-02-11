@@ -21,6 +21,7 @@ public class Pizza {
 	public String code;
 	public String libelle;
 	public double prix;
+	public CategoriePizza categorie;
 	
 	/**
 	 * Constructeur 
@@ -30,11 +31,12 @@ public class Pizza {
 	 * @param prix (requis)
 	 */
 	
-	public Pizza(String code, String libelle, double prix) {
+	public Pizza(String code, String libelle, double prix, CategoriePizza categorie) {
 		id = nbPizza++;
 		this.code = code;
 		this.libelle = libelle;
 		this.prix = prix;
+		this.categorie = categorie;
 	}
 	
 
@@ -48,12 +50,13 @@ public class Pizza {
 	 * 
 	 */
 	
-	public Pizza(int id, String code, String libelle, double prix) {
+	public Pizza(int id, String code, String libelle, double prix, CategoriePizza categorie) {
 		nbPizza = nbPizza+1;
 		this.id = id;
 		this.code = code;
 		this.libelle = libelle;
 		this.prix = prix;
+		this.categorie = categorie;
 	}
 
 	/**
@@ -63,7 +66,8 @@ public class Pizza {
 	
 	@Override
 	public String toString() {
-		return new String(this.id+" "+this.code+" -> "+this.libelle+" ("+this.prix+" €)");
+		return new String(this.id+" "+this.code+" -> "+this.libelle+" "+categorie+" ("+this.prix+" €)");
 	}
 
+	
 }

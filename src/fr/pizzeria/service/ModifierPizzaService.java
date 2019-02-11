@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import fr.pizzeria.DAO.IPizzaDao;
 import fr.pizzeria.exception.ModificationPizzaException;
+import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
 /**
@@ -35,11 +36,18 @@ public class ModifierPizzaService extends MenuService{
 			//Demande et lecture du nouveau code prix par l'utilisateur
 			System.out.println("Veuillez saisir le nouveau prix :");
 			double nouveauPrix = scanner.nextDouble();
+			//Demande et lecture de la nouvelle catégorie saisie par l'utilisateur
+			System.out.println("Veuillez saisir la catégorie parmis les suivantes :");
+			List<String> listeCategories = CategoriePizza.listerCategorie();
+			for(String categorie : listeCategories){
+				System.out.print(" "+categorie+" ");
+			}
+			String categorieChoisie = scanner.next();	
 			
 			//Modification de la pizza dans la carte
 			for(Pizza pizza : listePizza){
 				if(pizza.code.equals(code)){
-					pizzaDao.modifierPizzaDansListe(code, new Pizza(pizza.id, nouveauCode,nouveauLibelle,nouveauPrix));
+					pizzaDao.modifierPizzaDansListe(code, new Pizza(pizza.id, nouveauCode,nouveauLibelle,nouveauPrix,CategoriePizza.valueOf(categorieChoisie.toUpperCase())));
 					
 				}
 			}

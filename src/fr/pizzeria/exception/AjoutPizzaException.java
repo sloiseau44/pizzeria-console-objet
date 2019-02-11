@@ -13,6 +13,6 @@ public class AjoutPizzaException extends StockageException{
 	private static final long serialVersionUID = 1L;
 
 	public AjoutPizzaException() {
-		super("Une pizza avec ce code existe déjà.");
+		super("\n Une pizza avec ce code existe déjà.");
 	}
 }
