@@ -1,7 +1,5 @@
 package fr.pizzeria.model;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -21,18 +19,6 @@ public enum CategoriePizza {
 		this.nom = nom;
 	}
 	
-	/**
-	 * 
-	 * @return la liste des catégories 
-	 */
-	
-	public static List<String> listerCategorie(){
-		List<String> listeCategories = new ArrayList<String>();
-		for(CategoriePizza categorie : values()){
-			listeCategories.add(categorie.nom);
-		}
-		return listeCategories;
-	}
 	
 	public String getNom(){
 		return nom;
@@ -48,13 +34,12 @@ public enum CategoriePizza {
 		CategoriePizza categorieChoisie=null;
 		int numCategorie = 1;
 		System.out.println("Veuillez saisir la catégorie parmis les suivantes :");
-		List<String> listeCategories = CategoriePizza.listerCategorie();
 		
-		for(String categorie : listeCategories){
-			System.out.println(numCategorie+". "+categorie);
+		for(CategoriePizza categorie : values()){
+			System.out.println(numCategorie+". "+categorie.getNom());
 			numCategorie++;
 		}
-				
+		
 		int numCategorieChoisie = scanner.nextInt();
 		
 		numCategorie = 1;
