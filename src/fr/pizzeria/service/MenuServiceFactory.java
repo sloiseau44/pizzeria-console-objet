@@ -32,6 +32,8 @@ public class MenuServiceFactory {
 			//Fermeture du programme
 		}else if(choixUtilisateur==99){
 			System.out.println("Aurevoir :(");
+			menuService = new FermetureDAO();
+			menuService = null;
 		}
 		return menuService;
 	}

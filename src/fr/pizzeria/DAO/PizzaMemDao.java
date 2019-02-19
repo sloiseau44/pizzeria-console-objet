@@ -86,5 +86,8 @@ public class PizzaMemDao implements IPizzaDao{
 		}	
 		return pizzaExiste;
 	}
-
+	
+	public void fermerDAO() throws SQLException{
+		
+	}
 }

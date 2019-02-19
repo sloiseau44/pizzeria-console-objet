@@ -108,5 +108,9 @@ public class PizzaJdbcDao implements IPizzaDao{
 		ResultSet rsListePizza = statement.executeQuery("select * from pizzeriadao.pizza where code=\""+codePizza+"\"");
 		return rsListePizza.next();
 	}
+	
+	public void fermerDAO() throws SQLException{
+		connection.close();
+	}
 
 }

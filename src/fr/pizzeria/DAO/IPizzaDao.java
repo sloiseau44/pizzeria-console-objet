@@ -65,4 +65,11 @@ public interface IPizzaDao  {
 	 */
 	
 	boolean pizzaExiste(String codePizza) throws SQLException;
+	
+	/**
+	 * Permet de fermer le DAO
+	 * @throws SQLException
+	 */
+	
+	void fermerDAO() throws SQLException;
 }
