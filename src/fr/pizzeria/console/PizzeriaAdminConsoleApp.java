@@ -1,5 +1,8 @@
 package fr.pizzeria.console;
 
+
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 import fr.pizzeria.exception.StockageException;
@@ -42,8 +45,8 @@ public class PizzeriaAdminConsoleApp {
 			if(menuService != null){
 				try{
 					menuService.executerCasUtilisation( scanner);
-				}catch(StockageException stockageException){
-					System.out.println(stockageException.getMessage());
+				}catch(StockageException | IOException | SQLException e){
+					System.out.println(e.getMessage());
 				}catch(IllegalArgumentException illegalArgumentException){
 					System.out.println("\nLa catégorie saisie n'existe pas.");
 				}

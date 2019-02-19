@@ -69,5 +69,58 @@ public class Pizza {
 		return new String(this.id+" "+this.code+" -> "+this.libelle+" "+categorie.getNom()+" ("+this.prix+" €)");
 	}
 
+
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+	public String getCode() {
+		return code;
+	}
+
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+
+	public String getLibelle() {
+		return libelle;
+	}
+
+
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
+	}
+
+
+	public double getPrix() {
+		return prix;
+	}
+
+
+	public void setPrix(double prix) {
+		this.prix = prix;
+	}
+
+
+	public CategoriePizza getCategorie() {
+		return categorie;
+	}
+
+
+	public void setCategorie(CategoriePizza categorie) {
+		this.categorie = categorie;
+	}
+	
+	
+	
+
 	
 }

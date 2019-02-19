@@ -53,4 +53,18 @@ public enum CategoriePizza {
 		
 		return categorieChoisie;
 	}
+	
+	public static CategoriePizza recupereCategorie(String nomCategorie){
+		CategoriePizza categorieChoisie=null;
+		
+		for(CategoriePizza categorie : values()){
+			if(nomCategorie.equals(categorie.getNom())){
+				categorieChoisie = categorie;
+				break;
+			}
+		}
+		
+		return categorieChoisie;
+	}
+	
 }

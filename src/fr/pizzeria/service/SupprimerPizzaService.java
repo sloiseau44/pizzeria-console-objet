@@ -1,5 +1,7 @@
 package fr.pizzeria.service;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 import fr.pizzeria.exception.ChoixDaoException;
@@ -13,7 +15,7 @@ import fr.pizzeria.exception.SuppressionPizzaException;
  */
 
 public class SupprimerPizzaService extends MenuService{
-	public void executerCasUtilisation(/*/IPizzaDao pizzaDao,*/ Scanner scanner) throws StockageException {		
+	public void executerCasUtilisation(/*/IPizzaDao pizzaDao,*/ Scanner scanner) throws StockageException, IOException, SQLException {		
 		if(iPizzaDao==null){
 			throw new ChoixDaoException();
 		}else{

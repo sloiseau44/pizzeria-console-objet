@@ -1,5 +1,7 @@
 package fr.pizzeria.service;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -16,7 +18,7 @@ import fr.pizzeria.model.Pizza;
  */
 
 public class ModifierPizzaService extends MenuService{
-	public void executerCasUtilisation(/*IPizzaDao pizzaDao,*/ Scanner scanner) throws StockageException {
+	public void executerCasUtilisation(/*IPizzaDao pizzaDao,*/ Scanner scanner) throws StockageException, IOException, SQLException {
 		System.out.println("Mise à jour d’une pizza");
 		List<Pizza> listePizza = iPizzaDao.listeDesPizzas();
 		for(Pizza pizza : listePizza){

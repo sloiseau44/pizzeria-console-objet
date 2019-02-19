@@ -1,5 +1,6 @@
 package fr.pizzeria.DAO;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import fr.pizzeria.exception.AjoutPizzaException;
@@ -16,11 +17,13 @@ import fr.pizzeria.model.Pizza;
 
 public interface IPizzaDao  {
 	
+	void initialisationListePizza() throws AjoutPizzaException, SQLException;
+	
 	/**
 	 * @return liste existante des pizzas
 	 */
 	
-	List<Pizza> listeDesPizzas();
+	List<Pizza> listeDesPizzas() throws SQLException;
 	
 	/** 
 	 * Ajoute une pizza dans la liste
@@ -28,7 +31,7 @@ public interface IPizzaDao  {
 	 * @throws AjoutPizzaException dans le cas où une pizza avec un code identique existe
 	 */
 	
-	void ajoutPizzaDansListe(Pizza pizza) throws AjoutPizzaException;
+	void ajoutPizzaDansListe(Pizza pizza) throws AjoutPizzaException, SQLException;
 	
 	/**
 	 * Modifie une pizza de la liste
@@ -37,7 +40,7 @@ public interface IPizzaDao  {
 	 * @throws ModificationPizzaException dans le cas où aucune pizza avec ce code n'existe
 	 */
 	
-	void modifierPizzaDansListe(String codePizza, Pizza pizza) throws ModificationPizzaException;
+	void modifierPizzaDansListe(String codePizza, Pizza pizza) throws ModificationPizzaException, SQLException;
 	
 	/**
 	 * Supprime une pizza de la liste
@@ -45,7 +48,7 @@ public interface IPizzaDao  {
 	 * @throws ModificationPizzaException dans le cas où aucune pizza avec ce code n'existe
 	 */
 	
-	void supprimerPizzaDansListe(String codePizza) throws SuppressionPizzaException;
+	void supprimerPizzaDansListe(String codePizza) throws SuppressionPizzaException, SQLException;
 	
 	/**
 	 * Trouve les informations d'une pizza dans la liste en fonction de son code
@@ -53,7 +56,7 @@ public interface IPizzaDao  {
 	 * @return la pizza demandé grâce à son code
 	 */
 	
-	Pizza trouverPizzaParCode(String codePizza);
+	Pizza trouverPizzaParCode(String codePizza) throws SQLException;
 	
 	/**
 	 * Détermine si une pizza existe dans la liste grâce à son code
@@ -61,5 +64,5 @@ public interface IPizzaDao  {
 	 * @return true ou false
 	 */
 	
-	boolean pizzaExiste(String codePizza);
+	boolean pizzaExiste(String codePizza) throws SQLException;
 }

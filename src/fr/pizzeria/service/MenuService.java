@@ -1,5 +1,7 @@
 package fr.pizzeria.service;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 import fr.pizzeria.DAO.IPizzaDao;
@@ -20,5 +22,5 @@ public abstract class MenuService {
 	 * @param scanner (requis)
 	 * @throws StockageException
 	 */
-	public abstract void executerCasUtilisation(/*IPizzaDao pizzaDao,*/ Scanner scanner) throws StockageException;
+	public abstract void executerCasUtilisation(/*IPizzaDao pizzaDao,*/ Scanner scanner) throws StockageException, IOException, SQLException;
 }

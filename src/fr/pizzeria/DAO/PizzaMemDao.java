@@ -1,8 +1,10 @@
 package fr.pizzeria.DAO;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.pizzeria.exception.AjoutPizzaException;
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
@@ -17,11 +19,11 @@ public class PizzaMemDao implements IPizzaDao{
 	//Déclaration de la carte des pizzas
 	List<Pizza> listePizza = new ArrayList<Pizza>();
 
-	public PizzaMemDao(){
+	public PizzaMemDao() throws AjoutPizzaException, SQLException{
 		initialisationListePizza();
 	}
 
-	public void initialisationListePizza() {
+	public void initialisationListePizza() throws AjoutPizzaException, SQLException {
 		//Création d'une carte de pizza de base
 		ajoutPizzaDansListe(new Pizza(0, "PEP", "Pépéroni", 12.50, CategoriePizza.VIANDE));
 		ajoutPizzaDansListe(new Pizza(1, "MAR", "Margherita", 14.00, CategoriePizza.SANS_VIANDE));
