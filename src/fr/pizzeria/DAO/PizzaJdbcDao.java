@@ -76,11 +76,8 @@ public class PizzaJdbcDao implements IPizzaDao{
 	@Override
 	public void modifierPizzaDansListe(String codePizza, Pizza pizza) throws ModificationPizzaException, SQLException {
 		Statement statement = connection.createStatement();
-		try{
-			statement.executeUpdate("update pizzeriadao.pizza set idPizza="+pizza.getId()+", code=\""+pizza.getCode()+"\", libelle=\""+pizza.libelle+"\", prix="+pizza.getPrix()+", categorie=\""+pizza.getCategorie().getNom()+"\" where code=\""+codePizza+"\"");
-		}catch(SQLException e){
-			System.out.println("update pizzeriadao.pizza set idPizza="+pizza.getId()+", code=\""+codePizza+"\", libelle=\""+pizza.libelle+", prix="+pizza.getPrix()+", categorie=\""+pizza.getCategorie().getNom()+"\" where code=\""+codePizza+"\"");
-		}
+		statement.executeUpdate("update pizzeriadao.pizza set idPizza="+pizza.getId()+", code=\""+pizza.getCode()+"\", libelle=\""+pizza.libelle+"\", prix="+pizza.getPrix()+", categorie=\""+pizza.getCategorie().getNom()+"\" where code=\""+codePizza+"\"");
+
 	}
 
 	@Override
