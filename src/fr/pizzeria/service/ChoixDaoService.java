@@ -13,7 +13,8 @@ public class ChoixDaoService extends MenuService{
 	public void executerCasUtilisation(Scanner scanner) throws StockageException, IOException, SQLException {
 		System.out.println("\n* Choix de la DAO * "
 				+ "\n1. Mémoire"
-				+ "\n2. JDBC");
+				+ "\n2. JDBC"
+				+ "\n3. JPA");
 		int saisie = scanner.nextInt();
 		
 		try {

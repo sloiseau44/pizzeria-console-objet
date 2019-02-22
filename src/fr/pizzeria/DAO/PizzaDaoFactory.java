@@ -19,6 +19,8 @@ public class PizzaDaoFactory {
 			iPizzaDao = new PizzaMemDao();
 		}else if(choixDao==2){
 			iPizzaDao = new PizzaJdbcDao();
+		}else if(choixDao==3){
+			iPizzaDao = new PizzaJpaDao();
 		}
 		
 		return iPizzaDao;

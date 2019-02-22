@@ -1,5 +1,7 @@
 package fr.pizzeria.model;
 
+import javax.persistence.*;
+
 /**
  * 
  * @author Acer
@@ -7,6 +9,8 @@ package fr.pizzeria.model;
  *
  */
 
+@Entity
+@Table(name="pizza")
 public class Pizza {
 	
 	/**
@@ -16,11 +20,19 @@ public class Pizza {
 	 * @param prix (requis) prix d'achat de la pizza
 	 * 
 	 */
+	
 	public static int nbPizza;
+	@Id
+	@Column(name="idPizza")
 	public int id;
+	@Column(name="code", length=255)
 	public String code;
+	@Column(name="libelle", length=255)
 	public String libelle;
+	@Column(name="prix")
 	public double prix;
+	@Enumerated(EnumType.STRING)
+	@Column(name="categorie")
 	public CategoriePizza categorie;
 	
 	/**
@@ -30,6 +42,10 @@ public class Pizza {
 	 * @param libelle (requis)
 	 * @param prix (requis)
 	 */
+	
+	public Pizza(){
+		
+	}
 	
 	public Pizza(String code, String libelle, double prix, CategoriePizza categorie) {
 		id = nbPizza++;

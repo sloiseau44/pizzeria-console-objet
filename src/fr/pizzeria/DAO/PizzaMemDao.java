@@ -19,10 +19,6 @@ public class PizzaMemDao implements IPizzaDao{
 	//Déclaration de la carte des pizzas
 	List<Pizza> listePizza = new ArrayList<Pizza>();
 
-	public PizzaMemDao() throws AjoutPizzaException, SQLException{
-		initialisationListePizza();
-	}
-
 	public void initialisationListePizza() throws AjoutPizzaException, SQLException {
 		//Création d'une carte de pizza de base
 		ajoutPizzaDansListe(new Pizza(0, "PEP", "Pépéroni", 12.50, CategoriePizza.VIANDE));
