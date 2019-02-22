@@ -13,6 +13,7 @@ import javax.persistence.TypedQuery;
 import fr.pizzeria.exception.AjoutPizzaException;
 import fr.pizzeria.exception.ModificationPizzaException;
 import fr.pizzeria.exception.SuppressionPizzaException;
+import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
 public class PizzaJpaDao implements IPizzaDao {
@@ -25,7 +26,14 @@ public class PizzaJpaDao implements IPizzaDao {
 
 	@Override
 	public void initialisationListePizza() throws AjoutPizzaException, SQLException {
-		// TODO Auto-generated method stub
+		ajoutPizzaDansListe(new Pizza(0, "PEP", "Pépéroni", 12.50, CategoriePizza.VIANDE));
+		ajoutPizzaDansListe(new Pizza(1, "MAR", "Margherita", 14.00, CategoriePizza.SANS_VIANDE));
+		ajoutPizzaDansListe(new Pizza(2, "REIN", "La Reine", 11.50, CategoriePizza.SANS_VIANDE));
+		ajoutPizzaDansListe(new Pizza(3, "FRO", "La 4 fromages", 12.00, CategoriePizza.SANS_VIANDE));
+		ajoutPizzaDansListe(new Pizza(4, "CAN", "La cannibale", 12.50, CategoriePizza.VIANDE));
+		ajoutPizzaDansListe(new Pizza(5, "SAV", "La savoyarde", 13.00, CategoriePizza.VIANDE));
+		ajoutPizzaDansListe(new Pizza(6, "ORI", "L'orientale", 13.50, CategoriePizza.VIANDE));
+		ajoutPizzaDansListe(new Pizza(7, "IND", "L'indienne", 14.00, CategoriePizza.VIANDE));
 		
 	}
 
@@ -37,7 +45,7 @@ public class PizzaJpaDao implements IPizzaDao {
 		TypedQuery<Pizza> requête = entityManager.createQuery("select p from Pizza p", Pizza.class);
 		List<Pizza> listePizza = new ArrayList<Pizza>();
 		for(Pizza pizza : requête.getResultList()){
-			
+			listePizza.add(pizza);
 		}
 		entityTransaction.commit();
 		entityManager.close();
@@ -46,7 +54,12 @@ public class PizzaJpaDao implements IPizzaDao {
 
 	@Override
 	public void ajoutPizzaDansListe(Pizza pizza) throws AjoutPizzaException, SQLException {
-		// TODO Auto-generated method stub
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		EntityTransaction entityTransaction = entityManager.getTransaction();
+		entityTransaction.begin();
+		entityManager.persist(pizza);
+		entityTransaction.commit();
+		entityManager.close();
 		
 	}
 

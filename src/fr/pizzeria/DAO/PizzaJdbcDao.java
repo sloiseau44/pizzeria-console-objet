@@ -70,13 +70,13 @@ public class PizzaJdbcDao implements IPizzaDao{
 	@Override
 	public void ajoutPizzaDansListe(Pizza pizza) throws AjoutPizzaException, SQLException {
 		Statement statement = connection.createStatement();
-		statement.executeUpdate("INSERT INTO pizzeriadao.pizza (idPizza, code, libelle, prix, categorie) VALUES ("+pizza.getId()+",\""+pizza.getCode()+"\",\""+pizza.getLibelle()+"\","+pizza.getPrix()+",\""+pizza.getCategorie().getNom()+"\")");
+		statement.executeUpdate("INSERT INTO pizzeriadao.pizza (idPizza, code, libelle, prix, categorie) VALUES ("+pizza.getId()+",\""+pizza.getCode()+"\",\""+pizza.getLibelle()+"\","+pizza.getPrix()+",\""+pizza.getCategorie().getNom().toUpperCase()+"\")");
 	}
 
 	@Override
 	public void modifierPizzaDansListe(String codePizza, Pizza pizza) throws ModificationPizzaException, SQLException {
 		Statement statement = connection.createStatement();
-		statement.executeUpdate("update pizzeriadao.pizza set idPizza="+pizza.getId()+", code=\""+pizza.getCode()+"\", libelle=\""+pizza.libelle+"\", prix="+pizza.getPrix()+", categorie=\""+pizza.getCategorie().getNom()+"\" where code=\""+codePizza+"\"");
+		statement.executeUpdate("update pizzeriadao.pizza set idPizza="+pizza.getId()+", code=\""+pizza.getCode()+"\", libelle=\""+pizza.libelle+"\", prix="+pizza.getPrix()+", categorie=\""+pizza.getCategorie().getNom().toUpperCase()+"\" where code=\""+codePizza+"\"");
 
 	}
 

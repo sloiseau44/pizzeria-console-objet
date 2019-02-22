@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 import fr.pizzeria.exception.StockageException;
 
-public class FermetureDAO extends MenuService{
+public class FermetureDaoService extends MenuService{
 
 	
 	public void executerCasUtilisation(Scanner scanner) throws StockageException, IOException, SQLException {

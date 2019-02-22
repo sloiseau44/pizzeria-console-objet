@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 import fr.pizzeria.DAO.PizzaDaoFactory;
+import fr.pizzeria.exception.ChoixDaoException;
 import fr.pizzeria.exception.StockageException;
 
 
